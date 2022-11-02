@@ -46,6 +46,9 @@ class Exiter:
         exit(0)
 
     def on_exit(self):
+        global started
+        duration = datetime.datetime.now() - started
+        print(f"Ran for {duration}", file=sys.stderr)
         sys.stdout.flush()
         if not self.at_exit_run:
             self.at_exit_run = True
@@ -68,6 +71,9 @@ class Exiter:
         max_value_length = max([len(f"{x:,d}") for x in stats.values()])
         for key in sorted(stats.keys()):
             print(f"{indent}{key:.<{max_key_length}s}...{stats[key]:.>{max_value_length},d}", file=file)
+
+
+started = datetime.datetime.now()
 
 
 def main():
