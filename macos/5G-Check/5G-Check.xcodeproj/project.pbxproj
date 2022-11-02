@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BA47B984290D690A00DAC338 /* CheckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B983290D690A00DAC338 /* CheckApp.swift */; };
+		BA47B986290D690A00DAC338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B985290D690A00DAC338 /* ContentView.swift */; };
+		BA47B988290D690C00DAC338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA47B987290D690C00DAC338 /* Assets.xcassets */; };
+		BA47B98B290D690C00DAC338 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */; };
+		BA47B996290D690C00DAC338 /* CheckAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B995290D690C00DAC338 /* CheckAppTests.swift */; };
+		BA47B9A0290D690C00DAC338 /* CheckAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */; };
+		BA47B9A2290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */; };
+		BA47B9AF290EB30D00DAC338 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9AE290EB30D00DAC338 /* ChartData.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA47B992290D690C00DAC338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA47B978290D690A00DAC338 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA47B97F290D690A00DAC338;
+			remoteInfo = "5G-Check";
+		};
+		BA47B99C290D690C00DAC338 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BA47B978290D690A00DAC338 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA47B97F290D690A00DAC338;
+			remoteInfo = "5G-Check";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BA47B980290D690A00DAC338 /* 5G-Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5G-Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA47B983290D690A00DAC338 /* CheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckApp.swift; sourceTree = "<group>"; };
+		BA47B985290D690A00DAC338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA47B987290D690C00DAC338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA47B98C290D690C00DAC338 /* CheckApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckApp.entitlements; sourceTree = "<group>"; };
+		BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "5G-CheckTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA47B995290D690C00DAC338 /* CheckAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppTests.swift; sourceTree = "<group>"; };
+		BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "5G-CheckUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITests.swift; sourceTree = "<group>"; };
+		BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA47B9AE290EB30D00DAC338 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		BAFC924F291092060010A9AA /* 5G-Check-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "5G-Check-Info.plist"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA47B97D290D690A00DAC338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B98E290D690C00DAC338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B998290D690C00DAC338 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA47B977290D690A00DAC338 = {
+			isa = PBXGroup;
+			children = (
+				BA47B982290D690A00DAC338 /* 5G-Check */,
+				BA47B994290D690C00DAC338 /* 5G-CheckTests */,
+				BA47B99E290D690C00DAC338 /* 5G-CheckUITests */,
+				BA47B981290D690A00DAC338 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA47B981290D690A00DAC338 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA47B980290D690A00DAC338 /* 5G-Check.app */,
+				BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */,
+				BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA47B982290D690A00DAC338 /* 5G-Check */ = {
+			isa = PBXGroup;
+			children = (
+				BAFC924F291092060010A9AA /* 5G-Check-Info.plist */,
+				BA47B9AE290EB30D00DAC338 /* ChartData.swift */,
+				BA47B983290D690A00DAC338 /* CheckApp.swift */,
+				BA47B985290D690A00DAC338 /* ContentView.swift */,
+				BA47B987290D690C00DAC338 /* Assets.xcassets */,
+				BA47B98C290D690C00DAC338 /* CheckApp.entitlements */,
+				BA47B989290D690C00DAC338 /* Preview Content */,
+			);
+			path = "5G-Check";
+			sourceTree = "<group>";
+		};
+		BA47B989290D690C00DAC338 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA47B994290D690C00DAC338 /* 5G-CheckTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA47B995290D690C00DAC338 /* CheckAppTests.swift */,
+			);
+			path = "5G-CheckTests";
+			sourceTree = "<group>";
+		};
+		BA47B99E290D690C00DAC338 /* 5G-CheckUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */,
+				BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */,
+			);
+			path = "5G-CheckUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA47B97F290D690A00DAC338 /* 5G-Check */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA47B9A5290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-Check" */;
+			buildPhases = (
+				BA47B97C290D690A00DAC338 /* Sources */,
+				BA47B97D290D690A00DAC338 /* Frameworks */,
+				BA47B97E290D690A00DAC338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "5G-Check";
+			productName = "5G-Check";
+			productReference = BA47B980290D690A00DAC338 /* 5G-Check.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BA47B990290D690C00DAC338 /* 5G-CheckTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA47B9A8290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckTests" */;
+			buildPhases = (
+				BA47B98D290D690C00DAC338 /* Sources */,
+				BA47B98E290D690C00DAC338 /* Frameworks */,
+				BA47B98F290D690C00DAC338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA47B993290D690C00DAC338 /* PBXTargetDependency */,
+			);
+			name = "5G-CheckTests";
+			productName = "5G-CheckTests";
+			productReference = BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA47B99A290D690C00DAC338 /* 5G-CheckUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA47B9AB290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckUITests" */;
+			buildPhases = (
+				BA47B997290D690C00DAC338 /* Sources */,
+				BA47B998290D690C00DAC338 /* Frameworks */,
+				BA47B999290D690C00DAC338 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA47B99D290D690C00DAC338 /* PBXTargetDependency */,
+			);
+			name = "5G-CheckUITests";
+			productName = "5G-CheckUITests";
+			productReference = BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA47B978290D690A00DAC338 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					BA47B97F290D690A00DAC338 = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					BA47B990290D690C00DAC338 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = BA47B97F290D690A00DAC338;
+					};
+					BA47B99A290D690C00DAC338 = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = BA47B97F290D690A00DAC338;
+					};
+				};
+			};
+			buildConfigurationList = BA47B97B290D690A00DAC338 /* Build configuration list for PBXProject "5G-Check" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BA47B977290D690A00DAC338;
+			productRefGroup = BA47B981290D690A00DAC338 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA47B97F290D690A00DAC338 /* 5G-Check */,
+				BA47B990290D690C00DAC338 /* 5G-CheckTests */,
+				BA47B99A290D690C00DAC338 /* 5G-CheckUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA47B97E290D690A00DAC338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA47B98B290D690C00DAC338 /* Preview Assets.xcassets in Resources */,
+				BA47B988290D690C00DAC338 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B98F290D690C00DAC338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B999290D690C00DAC338 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA47B97C290D690A00DAC338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA47B986290D690A00DAC338 /* ContentView.swift in Sources */,
+				BA47B9AF290EB30D00DAC338 /* ChartData.swift in Sources */,
+				BA47B984290D690A00DAC338 /* CheckApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B98D290D690C00DAC338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA47B996290D690C00DAC338 /* CheckAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA47B997290D690C00DAC338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA47B9A2290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift in Sources */,
+				BA47B9A0290D690C00DAC338 /* CheckAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA47B993290D690C00DAC338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA47B97F290D690A00DAC338 /* 5G-Check */;
+			targetProxy = BA47B992290D690C00DAC338 /* PBXContainerItemProxy */;
+		};
+		BA47B99D290D690C00DAC338 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA47B97F290D690A00DAC338 /* 5G-Check */;
+			targetProxy = BA47B99C290D690C00DAC338 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BA47B9A3290D690C00DAC338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BA47B9A4290D690C00DAC338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		BA47B9A6290D690C00DAC338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "5G-Check/CheckApp.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"5G-Check/Preview Content\"";
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "5G-Check-Info.plist";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.srdubya.CheckApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BA47B9A7290D690C00DAC338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "5G-Check/CheckApp.entitlements";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"5G-Check/Preview Content\"";
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "5G-Check-Info.plist";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.srdubya.CheckApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BA47B9A9290D690C00DAC338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/5G-Check.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/5G-Check";
+			};
+			name = Debug;
+		};
+		BA47B9AA290D690C00DAC338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya5G-CheckTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/5G-Check.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/5G-Check";
+			};
+			name = Release;
+		};
+		BA47B9AC290D690C00DAC338 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "5G-Check";
+			};
+			name = Debug;
+		};
+		BA47B9AD290D690C00DAC338 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 3FTXL5W4M7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "5G-Check";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA47B97B290D690A00DAC338 /* Build configuration list for PBXProject "5G-Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA47B9A3290D690C00DAC338 /* Debug */,
+				BA47B9A4290D690C00DAC338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA47B9A5290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-Check" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA47B9A6290D690C00DAC338 /* Debug */,
+				BA47B9A7290D690C00DAC338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA47B9A8290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA47B9A9290D690C00DAC338 /* Debug */,
+				BA47B9AA290D690C00DAC338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA47B9AB290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA47B9AC290D690C00DAC338 /* Debug */,
+				BA47B9AD290D690C00DAC338 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BA47B978290D690A00DAC338 /* Project object */;
+}
