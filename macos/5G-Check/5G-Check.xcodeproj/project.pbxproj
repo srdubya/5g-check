@@ -15,6 +15,7 @@
 		BA47B9A0290D690C00DAC338 /* CheckAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */; };
 		BA47B9A2290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */; };
 		BA47B9AF290EB30D00DAC338 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9AE290EB30D00DAC338 /* ChartData.swift */; };
+		BAE4116F29154965005D60B8 /* GatewayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE4116E29154965005D60B8 /* GatewayState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITests.swift; sourceTree = "<group>"; };
 		BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BA47B9AE290EB30D00DAC338 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		BAE4116E29154965005D60B8 /* GatewayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayState.swift; sourceTree = "<group>"; };
 		BAFC924F291092060010A9AA /* 5G-Check-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "5G-Check-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 				BA47B9AE290EB30D00DAC338 /* ChartData.swift */,
 				BA47B983290D690A00DAC338 /* CheckApp.swift */,
 				BA47B985290D690A00DAC338 /* ContentView.swift */,
+				BAE4116E29154965005D60B8 /* GatewayState.swift */,
 				BA47B987290D690C00DAC338 /* Assets.xcassets */,
 				BA47B98C290D690C00DAC338 /* CheckApp.entitlements */,
 				BA47B989290D690C00DAC338 /* Preview Content */,
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE4116F29154965005D60B8 /* GatewayState.swift in Sources */,
 				BA47B986290D690A00DAC338 /* ContentView.swift in Sources */,
 				BA47B9AF290EB30D00DAC338 /* ChartData.swift in Sources */,
 				BA47B984290D690A00DAC338 /* CheckApp.swift in Sources */,

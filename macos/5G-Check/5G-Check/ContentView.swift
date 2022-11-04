@@ -44,8 +44,9 @@ struct ContentView: View {
         let graphHeight = (((size.height - vMargin) / numCharts) - vMargin - gutter)
         let vOffset = (graphHeight + gutter) * index
         if bars.values.count > 0 {
+            let maxBarValue = bars.values.max()!
             let barWidth = ((size.width + hSpace - width) / CGFloat(bars.count)) - (3 * width)
-            let scaleFactor = (graphHeight - gutter) / CGFloat(bars.values.max()!)
+            let scaleFactor = (graphHeight - gutter) / CGFloat(maxBarValue)
             var x = width
             for bar in bars.keys.sorted(by: {a, b in
                 if let aAsInt = Int(a) {
@@ -56,12 +57,19 @@ struct ContentView: View {
                 return a > b
             }) {
                 let barHeight = scaleFactor * CGFloat(bars[bar]!)
+                let barTop = graphHeight - barHeight + vOffset
                 context.fill(
                     Path(CGRect(
-                        origin: CGPoint(x: x, y: graphHeight - barHeight + vOffset),
+                        origin: CGPoint(x: x, y: barTop),
                         size: CGSize(width: barWidth, height: barHeight)
                     )),
                     with: .color(ContentView.colors[Int(index)])
+                )
+                context.draw(
+                    Text(ContentView.numberFormatter.string(for: bars[bar]!)!),
+                    at: CGPoint(
+                        x: x + (barWidth/2),
+                        y: barHeight > numberHeight ? barTop + numberHeight : barTop - numberHeight)
                 )
                 context.draw(
                     Text(bar),
@@ -88,6 +96,9 @@ struct ContentView: View {
             }
             HStack {
                 TextField("token", text: $gatewayState.token, prompt: Text("auth token string"))
+                    .onChange(of: gatewayState.token) { _ in
+                        gatewayState.update()
+                    }
                 Button("Reset", action: {})
             }
         }
@@ -97,6 +108,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().frame(width: 300, height: 300)
+        ContentView()
+            .frame(width: 300, height: 300)
+            .environmentObject(GatewayState(asPreview: true))
     }
 }
