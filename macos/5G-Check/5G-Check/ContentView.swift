@@ -69,7 +69,7 @@ struct ContentView: View {
                     Text(ContentView.numberFormatter.string(for: bars[bar]!)!),
                     at: CGPoint(
                         x: x + (barWidth/2),
-                        y: barHeight > numberHeight ? barTop + numberHeight : barTop - numberHeight)
+                        y: barHeight > (numberHeight * 2) ? barTop + numberHeight : barTop - numberHeight)
                 )
                 context.draw(
                     Text(bar),
