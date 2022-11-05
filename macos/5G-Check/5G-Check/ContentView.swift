@@ -36,7 +36,7 @@ struct ContentView: View {
     static let colors = [
         Color(red: 0.0, green: 0.5, blue: 0.0),
         Color(red: 0.0, green: 0.5, blue: 0.5),
-        Color(red: 0.0, green: 0.5, blue: 0.5)
+        Color(red: 0.5, green: 0.5, blue: 0.0)
     ]
     
     fileprivate func drawChart(_ size: CGSize, _ context: GraphicsContext, _ chart: ChartData, _ index: Double) {
