@@ -131,4 +131,6 @@ dmypy.json
 
 # Pycharm
 .idea
+
 **/.DS_STORE
+*.png
