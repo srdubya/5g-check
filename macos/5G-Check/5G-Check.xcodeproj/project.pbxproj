@@ -11,29 +11,9 @@
 		BA47B986290D690A00DAC338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B985290D690A00DAC338 /* ContentView.swift */; };
 		BA47B988290D690C00DAC338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA47B987290D690C00DAC338 /* Assets.xcassets */; };
 		BA47B98B290D690C00DAC338 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */; };
-		BA47B996290D690C00DAC338 /* CheckAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B995290D690C00DAC338 /* CheckAppTests.swift */; };
-		BA47B9A0290D690C00DAC338 /* CheckAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */; };
-		BA47B9A2290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */; };
 		BA47B9AF290EB30D00DAC338 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA47B9AE290EB30D00DAC338 /* ChartData.swift */; };
 		BAE4116F29154965005D60B8 /* GatewayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE4116E29154965005D60B8 /* GatewayState.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		BA47B992290D690C00DAC338 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA47B978290D690A00DAC338 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA47B97F290D690A00DAC338;
-			remoteInfo = "5G-Check";
-		};
-		BA47B99C290D690C00DAC338 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BA47B978290D690A00DAC338 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BA47B97F290D690A00DAC338;
-			remoteInfo = "5G-Check";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		BA47B980290D690A00DAC338 /* 5G-Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5G-Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,11 +22,6 @@
 		BA47B987290D690C00DAC338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA47B98C290D690C00DAC338 /* CheckApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckApp.entitlements; sourceTree = "<group>"; };
-		BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "5G-CheckTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA47B995290D690C00DAC338 /* CheckAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppTests.swift; sourceTree = "<group>"; };
-		BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "5G-CheckUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITests.swift; sourceTree = "<group>"; };
-		BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BA47B9AE290EB30D00DAC338 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		BAE4116E29154965005D60B8 /* GatewayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayState.swift; sourceTree = "<group>"; };
 		BAFC924F291092060010A9AA /* 5G-Check-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "5G-Check-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -60,20 +35,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA47B98E290D690C00DAC338 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA47B998290D690C00DAC338 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -81,8 +42,6 @@
 			isa = PBXGroup;
 			children = (
 				BA47B982290D690A00DAC338 /* 5G-Check */,
-				BA47B994290D690C00DAC338 /* 5G-CheckTests */,
-				BA47B99E290D690C00DAC338 /* 5G-CheckUITests */,
 				BA47B981290D690A00DAC338 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,8 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				BA47B980290D690A00DAC338 /* 5G-Check.app */,
-				BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */,
-				BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,23 +77,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BA47B994290D690C00DAC338 /* 5G-CheckTests */ = {
-			isa = PBXGroup;
-			children = (
-				BA47B995290D690C00DAC338 /* CheckAppTests.swift */,
-			);
-			path = "5G-CheckTests";
-			sourceTree = "<group>";
-		};
-		BA47B99E290D690C00DAC338 /* 5G-CheckUITests */ = {
-			isa = PBXGroup;
-			children = (
-				BA47B99F290D690C00DAC338 /* CheckAppUITests.swift */,
-				BA47B9A1290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift */,
-			);
-			path = "5G-CheckUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,42 +97,6 @@
 			productReference = BA47B980290D690A00DAC338 /* 5G-Check.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BA47B990290D690C00DAC338 /* 5G-CheckTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA47B9A8290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckTests" */;
-			buildPhases = (
-				BA47B98D290D690C00DAC338 /* Sources */,
-				BA47B98E290D690C00DAC338 /* Frameworks */,
-				BA47B98F290D690C00DAC338 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA47B993290D690C00DAC338 /* PBXTargetDependency */,
-			);
-			name = "5G-CheckTests";
-			productName = "5G-CheckTests";
-			productReference = BA47B991290D690C00DAC338 /* 5G-CheckTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		BA47B99A290D690C00DAC338 /* 5G-CheckUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA47B9AB290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckUITests" */;
-			buildPhases = (
-				BA47B997290D690C00DAC338 /* Sources */,
-				BA47B998290D690C00DAC338 /* Frameworks */,
-				BA47B999290D690C00DAC338 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA47B99D290D690C00DAC338 /* PBXTargetDependency */,
-			);
-			name = "5G-CheckUITests";
-			productName = "5G-CheckUITests";
-			productReference = BA47B99B290D690C00DAC338 /* 5G-CheckUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,14 +109,6 @@
 				TargetAttributes = {
 					BA47B97F290D690A00DAC338 = {
 						CreatedOnToolsVersion = 14.0.1;
-					};
-					BA47B990290D690C00DAC338 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = BA47B97F290D690A00DAC338;
-					};
-					BA47B99A290D690C00DAC338 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = BA47B97F290D690A00DAC338;
 					};
 				};
 			};
@@ -230,8 +126,6 @@
 			projectRoot = "";
 			targets = (
 				BA47B97F290D690A00DAC338 /* 5G-Check */,
-				BA47B990290D690C00DAC338 /* 5G-CheckTests */,
-				BA47B99A290D690C00DAC338 /* 5G-CheckUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,20 +137,6 @@
 			files = (
 				BA47B98B290D690C00DAC338 /* Preview Assets.xcassets in Resources */,
 				BA47B988290D690C00DAC338 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA47B98F290D690C00DAC338 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA47B999290D690C00DAC338 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,37 +154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA47B98D290D690C00DAC338 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA47B996290D690C00DAC338 /* CheckAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BA47B997290D690C00DAC338 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BA47B9A2290D690C00DAC338 /* CheckAppUITestsLaunchTests.swift in Sources */,
-				BA47B9A0290D690C00DAC338 /* CheckAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BA47B993290D690C00DAC338 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA47B97F290D690A00DAC338 /* 5G-Check */;
-			targetProxy = BA47B992290D690C00DAC338 /* PBXContainerItemProxy */;
-		};
-		BA47B99D290D690C00DAC338 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BA47B97F290D690A00DAC338 /* 5G-Check */;
-			targetProxy = BA47B99C290D690C00DAC338 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BA47B9A3290D690C00DAC338 /* Debug */ = {
@@ -427,6 +277,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "5G-Check/CheckApp.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -440,6 +291,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "5G-Check-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "5G-Check";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +313,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "5G-Check/CheckApp.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -473,6 +327,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "5G-Check-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "5G-Check";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -481,86 +337,11 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.srdubya.CheckApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		BA47B9A9290D690C00DAC338 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 3FTXL5W4M7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/5G-Check.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/5G-Check";
-			};
-			name = Debug;
-		};
-		BA47B9AA290D690C00DAC338 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 3FTXL5W4M7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya5G-CheckTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/5G-Check.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/5G-Check";
-			};
-			name = Release;
-		};
-		BA47B9AC290D690C00DAC338 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 3FTXL5W4M7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "5G-Check";
-			};
-			name = Debug;
-		};
-		BA47B9AD290D690C00DAC338 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 3FTXL5W4M7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.srdubya.5G-CheckUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "5G-Check";
 			};
 			name = Release;
 		};
@@ -581,24 +362,6 @@
 			buildConfigurations = (
 				BA47B9A6290D690C00DAC338 /* Debug */,
 				BA47B9A7290D690C00DAC338 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA47B9A8290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA47B9A9290D690C00DAC338 /* Debug */,
-				BA47B9AA290D690C00DAC338 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BA47B9AB290D690C00DAC338 /* Build configuration list for PBXNativeTarget "5G-CheckUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BA47B9AC290D690C00DAC338 /* Debug */,
-				BA47B9AD290D690C00DAC338 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
