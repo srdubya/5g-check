@@ -17,21 +17,22 @@ struct CheckApp: App {
             ContentView()
                 .frame(minWidth: 300, idealWidth: 400, minHeight: 200, idealHeight: 300)
                 .environmentObject(gatewayState)
+                .navigationTitle("Internet GatewayStatistics \(gatewayState.elapsed)")
                 .onDisappear(perform: {
                     gatewayState.isShowingStatistics = false
                 })
         }
         .handlesExternalEvents(matching: ["StatisticsWindow"])
-        
+
         MenuBarExtra(content: {
-            Button("Statistics..."){
+            Button("Statistics...") {
                 gatewayState.isShowingStatistics = true
                 OpenWindows.MainWindow.open()
             }.disabled(gatewayState.isShowingStatistics)
             Button("Quit") {
                 NSApplication.shared.terminate(nil)
             }
-        } , label: {
+        }, label: {
             Text(gatewayState.state).onReceive(timer, perform: { _ in
                 gatewayState.update()
             })
@@ -41,9 +42,9 @@ struct CheckApp: App {
 
 enum OpenWindows: String, CaseIterable {
     case MainWindow = "StatisticsWindow"
-    
+
     func open() {
-        if let url = URL(string: "StatisticsWindow://\(self.rawValue)") {
+        if let url = URL(string: "StatisticsWindow://\(rawValue)") {
             NSWorkspace.shared.open(url)
         }
     }

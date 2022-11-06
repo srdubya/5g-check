@@ -24,6 +24,10 @@ class ChartData {
             self.values[withKey] = 1
         }
     }
+
+    func clear() {
+        self.values = [:]
+    }
     
     static func example0() -> ChartData {
         let ret = ChartData(name: "rsrp")

@@ -99,7 +99,9 @@ struct ContentView: View {
                     .onChange(of: gatewayState.token) { _ in
                         gatewayState.update()
                     }
-                Button("Reset", action: {})
+                Button("Reset", action: {
+                    gatewayState.clear()
+                })
             }
         }
         .padding(.all, 4.0)
