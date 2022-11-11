@@ -64,6 +64,9 @@ class GatewayState: ObservableObject {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error: \(error)")
+                DispatchQueue.main.async {
+                    self.state = "??"
+                }
                 return
             }
             if let response = response as? HTTPURLResponse {
@@ -77,8 +80,7 @@ class GatewayState: ObservableObject {
                 print("Response data string: \n \(datastring)")
             }
             do {
-                if let results = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
-                {
+                if let results = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
                     if let newModemType = results["modemtype"] {
                         if let rsrpAsAny = results["rsrp"] {
                             if let signalAsAny = results["signal"] {
@@ -102,6 +104,9 @@ class GatewayState: ObservableObject {
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.state = "??"
+                }
             }
         }
         task.resume()
