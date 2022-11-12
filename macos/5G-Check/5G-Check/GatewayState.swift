@@ -23,6 +23,40 @@ class GatewayState: ObservableObject {
         if asPreview {
             rsrp = ChartData.example0()
             signal = ChartData.example1()
+        } else {
+            let home = FileManager.default.homeDirectoryForCurrentUser
+            let fileUrl = home.appendingPathComponent(".5g-secret")
+            if FileManager.default.fileExists(atPath: fileUrl.path) {
+                let secret = try! String(contentsOfFile: fileUrl.path)
+                let url = URL(string: "http://192.168.0.1/cgi-bin/luci/")
+                guard let requestUrl = url else { fatalError() }
+                var request = URLRequest(url: requestUrl)
+                request.setValue(
+                    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                    forHTTPHeaderField: "Accept"
+                )
+                request.setValue("gzip, deflate", forHTTPHeaderField: "Accept-Enconding")
+                request.setValue("en-US,en;q=0.9", forHTTPHeaderField: "Accept-Language")
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.httpBody = secret.data(using: String.Encoding.utf8)
+                request.httpMethod = "POST"
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error: \(error)")
+                    } else {
+                        if let response = response as? HTTPURLResponse {
+                            print("Response HTTP Status code: \(response.statusCode)")
+                            if let newCookieHeader = response.value(forHTTPHeaderField: "Set-Cookie") {
+                                let headerBits = newCookieHeader.components(separatedBy: ";")
+                                DispatchQueue.main.async {
+                                    self.token = headerBits[0]
+                                }
+                            }
+                        }
+                    }
+                }
+                task.resume()
+            }
         }
     }
 

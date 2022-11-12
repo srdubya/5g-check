@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import atexit
 import datetime
+import json
 import os.path
 import sys
 import time
@@ -77,25 +78,46 @@ started = datetime.datetime.now()
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Please add the authentication cookie.", file=sys.stderr)
-        print(f"Usage:  {os.path.basename(sys.argv[0])} <authorization cookie>", file=sys.stderr)
-        exit(1)
+    auth_header = None
+    secret_path = os.path.expanduser('~')
+    secret_path += "/.5g-secret"
+    if os.path.isfile(secret_path):
+        with open(secret_path, 'r') as f:
+            secret = f.readline()
+            headers = {
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                "Accept-Enconding": "gzip, deflate",
+                "Accept-Language": "en-US,en;q=0.9",
+                "Content-Type": "application/x-www-form-urlencoded",
+            }
+            resp = requests.post("http://192.168.0.1/cgi-bin/luci/", headers=headers, data=secret)
+            resp.raise_for_status()
+            new_cookie = resp.headers['Set-Cookie']
+            cookie_bits = new_cookie.split(';')
+            auth_header = cookie_bits[0]
+    if not auth_header:
+        if len(sys.argv) < 2:
+            print("Please add the authentication cookie, or set up `~/.5g-secret`.", file=sys.stderr)
+            print(f"Usage:  {os.path.basename(sys.argv[0])} <authorization cookie>", file=sys.stderr)
+            exit(1)
+        else:
+            auth_header = sys.argv[1]
     exiter = Exiter()
     signal(SIGINT, exiter.on_signal)
     atexit.register(exiter.on_exit)
     headers = {
         'Accept': 'application/json',
-        'Cookie': sys.argv[1]
+        'Cookie': auth_header
     }
     try:
         while True:
             resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
             new_cookie = resp.headers['Set-Cookie']
             cookie_bits = new_cookie.split(';')
+            auth_header = cookie_bits[0]
             headers = {
                 'Accept': 'application/json',
-                'Cookie': cookie_bits[0]
+                'Cookie': auth_header
             }
             resp = resp.json()
             exiter.record_data_point(resp)
