@@ -77,6 +77,11 @@ class Exiter:
 started = datetime.datetime.now()
 
 
+def seconds_from(num_seconds, started_at):
+    delta = datetime.datetime.now() - started_at
+    return num_seconds - (delta.seconds - delta.microseconds / 1_000_000)
+
+
 def main():
     auth_header = None
     secret_path = os.path.expanduser('~')
@@ -111,6 +116,7 @@ def main():
     }
     try:
         while True:
+            started_at = datetime.datetime.now()
             resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
             new_cookie = resp.headers['Set-Cookie']
             cookie_bits = new_cookie.split(';')
@@ -128,7 +134,7 @@ def main():
                 f"signal = {resp['signal']}"
             ]))
             sys.stdout.flush()
-            time.sleep(5)
+            time.sleep(max(seconds_from(5.0, started_at), 0))
     except KeyboardInterrupt:
         pass
     except TimeoutError:
