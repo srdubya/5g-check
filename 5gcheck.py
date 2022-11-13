@@ -1,13 +1,25 @@
 #!/usr/bin/env python3
 import atexit
+import base64
 import datetime
-import json
 import os.path
 import sys
 import time
 from signal import signal, SIGINT
 
 import requests as requests
+from Crypto.Cipher import PKCS1_v1_5
+from Crypto.PublicKey import RSA
+from requests import HTTPError
+
+public_key = """-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCyQHO0OklO8jRISTLvooaFWlwe
+cQXlI8G0ssKSWl7Eeh3EUC4lzrwqCKpFSmMFbooXoTZRu4u99Ix9nSrkD51rO4v+
+yIDO30GBMTVowmlTB0rk8/rtnMIeCUlVlt5EwAYafquQDy95kS8lQPrHLxT1VOVD
+fFLX43W6JJ8BcXCzeQIDAQAB
+-----END PUBLIC KEY-----
+"""
+started = datetime.datetime.now()
 
 
 class Exiter:
@@ -74,9 +86,6 @@ class Exiter:
             print(f"{indent}{key:.<{max_key_length}s}...{stats[key]:.>{max_value_length},d}", file=file)
 
 
-started = datetime.datetime.now()
-
-
 def seconds_from(num_seconds, started_at):
     delta = datetime.datetime.now() - started_at
     return num_seconds - (delta.seconds - delta.microseconds / 1_000_000)
@@ -88,18 +97,30 @@ def main():
     secret_path += "/.5g-secret"
     if os.path.isfile(secret_path):
         with open(secret_path, 'r') as f:
-            secret = f.readline()
+            secret = f.readline().strip('\n')
+            key_pair = RSA.importKey(public_key)
+            encryptor = PKCS1_v1_5.new(key_pair)
+            username = base64.b64encode(encryptor.encrypt(bytes("admin", 'utf-8')))
+            password = base64.b64encode(encryptor.encrypt(bytes(secret, 'utf-8')))
             headers = {
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 "Accept-Enconding": "gzip, deflate",
                 "Accept-Language": "en-US,en;q=0.9",
                 "Content-Type": "application/x-www-form-urlencoded",
             }
-            resp = requests.post("http://192.168.0.1/cgi-bin/luci/", headers=headers, data=secret)
-            resp.raise_for_status()
-            new_cookie = resp.headers['Set-Cookie']
-            cookie_bits = new_cookie.split(';')
-            auth_header = cookie_bits[0]
+            data = {
+                'luci_username': username,
+                'luci_password': password
+            }
+            try:
+                resp = requests.post("http://192.168.0.1/cgi-bin/luci/", data, headers=headers)
+                resp.raise_for_status()
+                new_cookie = resp.headers['Set-Cookie']
+                cookie_bits = new_cookie.split(';')
+                auth_header = cookie_bits[0]
+                print(auth_header, file=sys.stderr)
+            except HTTPError as error:
+                print(f"Error using secret, trying command line arg...", file=sys.stderr)
     if not auth_header:
         if len(sys.argv) < 2:
             print("Please add the authentication cookie, or set up `~/.5g-secret`.", file=sys.stderr)
@@ -118,6 +139,7 @@ def main():
         while True:
             started_at = datetime.datetime.now()
             resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
+            resp.raise_for_status()
             new_cookie = resp.headers['Set-Cookie']
             cookie_bits = new_cookie.split(';')
             auth_header = cookie_bits[0]
@@ -134,7 +156,7 @@ def main():
                 f"signal = {resp['signal']}"
             ]))
             sys.stdout.flush()
-            time.sleep(max(seconds_from(5.0, started_at), 0))
+            time.sleep(max(seconds_from(2.0, started_at), 0))
     except KeyboardInterrupt:
         pass
     except TimeoutError:
