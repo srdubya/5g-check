@@ -134,7 +134,8 @@ dmypy.json
 
 **/.DS_STORE
 *.png
-macos/5G-Check/5G-Check.xcodeproj/xcuserdata
+macos/5G-Check/5G-Check.xcodeproj/xcuserdata/**
 **/.vscode
 **/xcuserdata
 **/WorkspaceSettings.xcsettings
+macos/5G-Check/5G-Check.xcodeproj/xcshareddata/**

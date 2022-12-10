@@ -15,6 +15,19 @@
 		BAE4116F29154965005D60B8 /* GatewayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE4116E29154965005D60B8 /* GatewayState.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BA9081CE2921BA390076FAA8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BA47B980290D690A00DAC338 /* 5G-Check.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5G-Check.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA47B983290D690A00DAC338 /* CheckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckApp.swift; sourceTree = "<group>"; };
@@ -23,6 +36,7 @@
 		BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA47B98C290D690C00DAC338 /* CheckApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CheckApp.entitlements; sourceTree = "<group>"; };
 		BA47B9AE290EB30D00DAC338 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		BA9081B32921B9DD0076FAA8 /* 5G-Check.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "5G-Check.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BAE4116E29154965005D60B8 /* GatewayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayState.swift; sourceTree = "<group>"; };
 		BAFC924F291092060010A9AA /* 5G-Check-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "5G-Check-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -43,6 +57,7 @@
 			children = (
 				BA47B982290D690A00DAC338 /* 5G-Check */,
 				BA47B981290D690A00DAC338 /* Products */,
+				BA9081CB2921BA390076FAA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,9 +87,22 @@
 		BA47B989290D690C00DAC338 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				BA9081B32921B9DD0076FAA8 /* 5G-Check.xcodeproj */,
 				BA47B98A290D690C00DAC338 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA9081B42921B9DD0076FAA8 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA9081CB2921BA390076FAA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +115,7 @@
 				BA47B97C290D690A00DAC338 /* Sources */,
 				BA47B97D290D690A00DAC338 /* Frameworks */,
 				BA47B97E290D690A00DAC338 /* Resources */,
+				BA9081CE2921BA390076FAA8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +152,12 @@
 			mainGroup = BA47B977290D690A00DAC338;
 			productRefGroup = BA47B981290D690A00DAC338 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BA9081B42921B9DD0076FAA8 /* Products */;
+					ProjectRef = BA9081B32921B9DD0076FAA8 /* 5G-Check.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BA47B97F290D690A00DAC338 /* 5G-Check */,

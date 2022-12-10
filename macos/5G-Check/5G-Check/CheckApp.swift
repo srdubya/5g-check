@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct CheckApp: App {
     @StateObject var gatewayState = GatewayState(asPreview: false)
+
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     var body: some Scene {
