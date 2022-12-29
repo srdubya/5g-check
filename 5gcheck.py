@@ -16,6 +16,7 @@ started = datetime.datetime.now()
 
 class Exiter:
     def __init__(self):
+        self.reboots = 0
         self.counts = {}
         self.stats = {}
         self.max_modem_type_len = 0
@@ -23,9 +24,18 @@ class Exiter:
 
     def record_data_point(self, data_point):
         modem_type = data_point['modemtype'].strip()
+        print("  ".join([
+            f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
+            f"reboots = {self.reboots}",
+            f"rsrp = {data_point['rsrp']}",
+            f"signal = {data_point['signal']}",
+            f"modemtype = {modem_type}",
+        ]))
+        sys.stdout.flush()
         self.max_modem_type_len = max(self.max_modem_type_len, len(modem_type))
         self.counts[modem_type] = self.counts[modem_type] + 1 if modem_type in self.counts else 1
         self.record_stats(modem_type, data_point)
+        return modem_type
 
     def record_stats(self, modem_type, data_point):
         rsrp = data_point['rsrp']
@@ -77,10 +87,33 @@ class Exiter:
         for key in sorted(stats.keys()):
             print(f"{indent}{key:.<{max_key_length}s}...{stats[key]:.>{max_value_length},d}", file=file)
 
+    def record_reboot(self):
+        self.reboots += 1
+
+
+def reboot(headers):
+    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Initiating reboot...']))
+    sys.stdout.flush()
+    resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/reboot", headers=headers)
+    resp.raise_for_status()
+    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Waiting...']))
+    sys.stdout.flush()
+    time.sleep(60 * 3)
+    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Logging back in...']))
+    sys.stdout.flush()
+    return sign_in()
+
 
 def seconds_from(num_seconds, started_at):
     delta = datetime.datetime.now() - started_at
     return num_seconds - (delta.seconds - delta.microseconds / 1_000_000)
+
+
+def within_reboot_window():
+    start_hour = 1
+    end_hour = 5
+    now = datetime.datetime.now()
+    return start_hour <= now.hour <= end_hour
 
 
 def main():
@@ -112,15 +145,15 @@ def main():
                 'Cookie': auth_header
             }
             resp = resp.json()
-            exiter.record_data_point(resp)
-            print("  ".join([
-                f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
-                f"rsrp = {resp['rsrp']}",
-                f"modemtype = {resp['modemtype']}",
-                f"signal = {resp['signal']}"
-            ]))
-            sys.stdout.flush()
-            time.sleep(max(seconds_from(2.0, started_at), 0))
+            modem_type = exiter.record_data_point(resp)
+            if modem_type != '5G' and within_reboot_window():
+                headers = {
+                    'Accept': 'application/json',
+                    'Cookie': reboot(headers)
+                }
+                exiter.record_reboot()
+            else:
+                time.sleep(max(seconds_from(2.0, started_at), 0))
     except KeyboardInterrupt:
         pass
     except TimeoutError:
