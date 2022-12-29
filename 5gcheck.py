@@ -153,7 +153,7 @@ def main():
                 }
                 exiter.record_reboot()
             else:
-                time.sleep(max(seconds_from(2.0, started_at), 0))
+                time.sleep(max(seconds_from(10.0, started_at), 0))
     except KeyboardInterrupt:
         pass
     except TimeoutError:
