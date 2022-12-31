@@ -24,6 +24,8 @@ class Exiter:
 
     def record_data_point(self, data_point):
         modem_type = data_point['modemtype'].strip()
+        if modem_type == '5G':
+            modem_type = f'\033[92m{modem_type}\033[39m'
         print("  ".join([
             f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
             f"reboots = {self.reboots}",
