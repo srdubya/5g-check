@@ -49,7 +49,7 @@ class Exiter:
             f"reboots = {self.reboots}",
             f"rsrp = {data_point['rsrp']}",
             f"signal = {data_point['signal']}",
-            f"modemtype = {colored_modem_type}",
+            f"modemtype = {modem_type}",
         ]))
         sys.stdout.flush()
         self.max_modem_type_len = max(self.max_modem_type_len, len(modem_type))
