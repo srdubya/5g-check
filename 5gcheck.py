@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import atexit
 import datetime
+import logging
+import math
 import os.path
 import sys
 import time
@@ -12,6 +14,13 @@ import requests as requests
 from signin5g import sign_in
 
 started = datetime.datetime.now()
+logging.basicConfig(
+    filename=os.path.expanduser('~/.5g-history.txt'),
+    level=logging.INFO,
+    format='%(asctime)s  %(message)s',
+    datefmt="%Y/%m/%Y %I:%M:%S %p"
+)
+logger = logging.getLogger(os.path.basename(sys.argv[0]))
 
 
 class Exiter:
@@ -24,14 +33,23 @@ class Exiter:
 
     def record_data_point(self, data_point):
         modem_type = data_point['modemtype'].strip()
+        colored_modem_type = modem_type
         if modem_type == '5G':
-            modem_type = f'\033[92m{modem_type}\033[39m'
+            colored_modem_type = f'\033[92m{modem_type}\033[39m'
         print("  ".join([
+            f"\033[2K\r"
             f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
             f"reboots = {self.reboots}",
             f"rsrp = {data_point['rsrp']}",
             f"signal = {data_point['signal']}",
-            f"modemtype = {modem_type}",
+            f"modemtype = {colored_modem_type}",
+        ]), end="")
+        logger.info("  ".join([
+            # f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
+            f"reboots = {self.reboots}",
+            f"rsrp = {data_point['rsrp']}",
+            f"signal = {data_point['signal']}",
+            f"modemtype = {colored_modem_type}",
         ]))
         sys.stdout.flush()
         self.max_modem_type_len = max(self.max_modem_type_len, len(modem_type))
@@ -65,7 +83,7 @@ class Exiter:
     def on_exit(self):
         global started
         duration = datetime.datetime.now() - started
-        print(f"Ran for {duration}", file=sys.stderr)
+        print(f"\nRan for {duration}", file=sys.stderr)
         sys.stdout.flush()
         if not self.at_exit_run:
             self.at_exit_run = True
@@ -94,16 +112,16 @@ class Exiter:
 
 
 def reboot(headers):
-    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Initiating reboot...']))
-    sys.stdout.flush()
+    logger.info("Initiating reboot...")
     resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/reboot", headers=headers)
     resp.raise_for_status()
-    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Waiting...']))
-    sys.stdout.flush()
+    logger.info("...waiting")
     time.sleep(60 * 3)
-    print("  ".join([f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}", 'Logging back in...']))
-    sys.stdout.flush()
-    return sign_in()
+    logger.info("...reconnecting")
+    try:
+        return sign_in()
+    finally:
+        logger.info("...reboot complete")
 
 
 def seconds_from(num_seconds, started_at):
@@ -149,13 +167,23 @@ def main():
             resp = resp.json()
             modem_type = exiter.record_data_point(resp)
             if modem_type != '5G' and within_reboot_window():
+                print("")
                 headers = {
                     'Accept': 'application/json',
                     'Cookie': reboot(headers)
                 }
                 exiter.record_reboot()
             else:
-                time.sleep(max(seconds_from(10.0, started_at), 0))
+                while True:
+                    time_left = round(max(seconds_from(10.0, started_at), 0))
+                    time_left_str = f'  {time_left}  '
+                    print(f"\033[0K{time_left_str}", end="")
+                    sys.stdout.flush()
+                    if time_left > 0:
+                        time.sleep(1)
+                        print(f"\033[{len(time_left_str)}D", end="")
+                        continue
+                    break
     except KeyboardInterrupt:
         pass
     except TimeoutError:
