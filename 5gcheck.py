@@ -1,29 +1,22 @@
 #!/usr/bin/env python3
 import atexit
 import datetime
-import logging
-import math
 import os.path
 import sys
 import time
 from signal import signal, SIGINT
 from typing import Dict
 
-import requests as requests
+from requests import HTTPError
 
-from signin5g import sign_in
+from gateway import Gateway
 
 started = datetime.datetime.now()
-logging.basicConfig(
-    filename=os.path.expanduser('~/.5g-history.txt'),
-    level=logging.INFO,
-    format='%(asctime)s  %(message)s',
-    datefmt="%Y/%m/%Y %I:%M:%S %p"
-)
-logger = logging.getLogger(os.path.basename(sys.argv[0]))
 
 
 class Exiter:
+    logger = Gateway.logger
+
     def __init__(self):
         self.reboots = 0
         self.counts = {}
@@ -44,7 +37,7 @@ class Exiter:
             f"signal = {data_point['signal']}",
             f"modemtype = {colored_modem_type}",
         ]), end="")
-        logger.info("  ".join([
+        self.logger.info("  ".join([
             # f"{datetime.datetime.now().strftime('%Y-%m-%d %I:%M:%S %p')}",
             f"reboots = {self.reboots}",
             f"rsrp = {data_point['rsrp']}",
@@ -111,19 +104,6 @@ class Exiter:
         self.reboots += 1
 
 
-def reboot(headers):
-    logger.info("Initiating reboot...")
-    resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/reboot", headers=headers)
-    resp.raise_for_status()
-    logger.info("...waiting")
-    time.sleep(60 * 3)
-    logger.info("...reconnecting")
-    try:
-        return sign_in()
-    finally:
-        logger.info("...reboot complete")
-
-
 def seconds_from(num_seconds, started_at):
     delta = datetime.datetime.now() - started_at
     return num_seconds - (delta.seconds - delta.microseconds / 1_000_000)
@@ -137,7 +117,7 @@ def within_reboot_window():
 
 
 def main():
-    auth_header = sign_in()
+    auth_header = Gateway.sign_in()
     if not auth_header:
         if len(sys.argv) < 2:
             print("Please add the authentication cookie, or set up `~/.5g-secret`.", file=sys.stderr)
@@ -148,46 +128,46 @@ def main():
     exiter = Exiter()
     signal(SIGINT, exiter.on_signal)
     atexit.register(exiter.on_exit)
-    headers = {
-        'Accept': 'application/json',
-        'Cookie': auth_header
-    }
+
     try:
         while True:
             started_at = datetime.datetime.now()
-            resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
-            resp.raise_for_status()
-            new_cookie = resp.headers['Set-Cookie']
-            cookie_bits = new_cookie.split(';')
-            auth_header = cookie_bits[0]
-            headers = {
-                'Accept': 'application/json',
-                'Cookie': auth_header
-            }
-            resp = resp.json()
+            auth_header, resp = Gateway.get_status(auth_header)
             modem_type = exiter.record_data_point(resp)
-            if modem_type != '5G' and within_reboot_window():
+            if modem_type != '5G' and modem_type != 'N/A' and within_reboot_window():
                 print("")
-                headers = {
-                    'Accept': 'application/json',
-                    'Cookie': reboot(headers)
-                }
+                auth_header = Gateway.reboot(auth_header)
                 exiter.record_reboot()
             else:
-                while True:
-                    time_left = round(max(seconds_from(10.0, started_at), 0))
-                    time_left_str = f'  {time_left}  '
-                    print(f"\033[0K{time_left_str}", end="")
-                    sys.stdout.flush()
-                    if time_left > 0:
-                        time.sleep(1)
-                        print(f"\033[{len(time_left_str)}D", end="")
-                        continue
-                    break
+                try:
+                    if modem_type == '5G' and started_at.hour == Gateway.get_speedtest_hour():
+                        Gateway.advance_speedtest_hour()
+                        auth_header, speed_data = Gateway.run_speed_test(auth_header)
+                        print()
+                        print(Gateway.format_speed_data(speed_data))
+                        print()
+                    else:
+                        wait_a_while(started_at)
+                except HTTPError as error:
+                    print(f"\nFailed to run speed test:  {error.response.reason}")
+
     except KeyboardInterrupt:
         pass
     except TimeoutError:
         print("Request timed out, exiting...", file=sys.stderr)
+
+
+def wait_a_while(started_at):
+    while True:
+        time_left = round(max(seconds_from(10.0, started_at), 0))
+        time_left_str = f'  {time_left}  '
+        print(f"\033[0K{time_left_str}", end="")
+        sys.stdout.flush()
+        if time_left > 0:
+            time.sleep(1)
+            print(f"\033[{len(time_left_str)}D", end="")
+            continue
+        break
 
 
 if __name__ == '__main__':
