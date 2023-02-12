@@ -130,22 +130,26 @@ def main():
     atexit.register(exiter.on_exit)
 
     try:
+        count_4g = 0
         while True:
             started_at = datetime.datetime.now()
             auth_header, resp = Gateway.get_status(auth_header)
             modem_type = exiter.record_data_point(resp)
             if modem_type != '5G' and modem_type != 'N/A' and within_reboot_window():
-                print("")
-                auth_header = Gateway.reboot(auth_header)
-                exiter.record_reboot()
+                count_4g += 1
+                if count_4g > 5:
+                    print("")
+                    auth_header = run_speed_test(auth_header)
+                    auth_header = Gateway.reboot(auth_header)
+                    exiter.record_reboot()
+                else:
+                    wait_a_while(started_at)
             else:
+                count_4g = 0
                 try:
                     if modem_type == '5G' and started_at.hour == Gateway.get_speedtest_hour():
                         Gateway.advance_speedtest_hour()
-                        auth_header, speed_data = Gateway.run_speed_test(auth_header)
-                        print()
-                        print(Gateway.format_speed_data(speed_data))
-                        print()
+                        auth_header = run_speed_test(auth_header)
                     else:
                         wait_a_while(started_at)
                 except HTTPError as error:
@@ -155,6 +159,14 @@ def main():
         pass
     except TimeoutError:
         print("Request timed out, exiting...", file=sys.stderr)
+
+
+def run_speed_test(auth_header):
+    auth_header, speed_data = Gateway.run_speed_test(auth_header)
+    print()
+    print(Gateway.format_speed_data(speed_data))
+    print()
+    return auth_header
 
 
 def wait_a_while(started_at):

@@ -61,6 +61,7 @@ class Gateway:
             return Gateway.sign_in()
         finally:
             cls.logger.info("...reboot complete")
+            cls.csrf_token = None
 
     @classmethod
     def run_speed_test(cls, auth_token):
