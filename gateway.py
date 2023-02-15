@@ -1,4 +1,5 @@
 import base64
+import datetime
 import logging
 import os
 import re
@@ -25,7 +26,7 @@ def _make_logger():
 
 class Gateway:
     logger = _make_logger()
-    _next_speedtest_hour = 5
+    _next_speedtest_hour = 5 if datetime.datetime.now().hour <= 5 or datetime.datetime.now().hour > 17 else 17
     csrf_token = None
 
     @classmethod
