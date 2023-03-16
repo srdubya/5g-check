@@ -101,12 +101,14 @@ class Gateway:
 
     @classmethod
     def format_speed_data(cls, speed_data):
-        return "\n".join([
-            f"download..{float(speed_data['download']):.>8,.2f} MB/s",
-            f"upload....{float(speed_data['upload']):.>8,.2f} MB/s",
-            f"latency...{float(speed_data['latency']):.>8,.2f} ms",
-            f"jitter....{float(speed_data['jitter']):.>8,.2f} ms",
-            ])
+        ret = []
+        headings = {'download': 'MB/s', 'upload': 'MB/s', 'latency': 'ms', 'jitter': 'ms'}
+        for key in headings.keys():
+            try:
+                ret.append(f"{key:.<10s}{float(speed_data[key]):.>8,.2f} {headings[key]}")
+            except ValueError:
+                ret.append(f"{key:.<10s}{speed_data[key]}")
+        return "\n".join(ret)
 
     @classmethod
     def _make_header(cls, auth_token):
