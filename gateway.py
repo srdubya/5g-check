@@ -41,7 +41,17 @@ class Gateway:
     @classmethod
     def get_status(cls, auth_token):
         headers = cls._make_header(auth_token)
-        resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
+        try_num = 1
+        while try_num < 10:
+            try:
+                resp = requests.get("http://192.168.0.1/cgi-bin/luci/verizon/network/getStatus", headers=headers)
+                break
+            except requests.exceptions.ConnectionError as error:
+                print(f'Error getting status:  {error}')
+                try_num += 1
+                if not try_num < 10:
+                    raise error
+                time.sleep(10)
         resp.raise_for_status()
         new_cookie = resp.headers['Set-Cookie']
         cookie_bits = new_cookie.split(';')
