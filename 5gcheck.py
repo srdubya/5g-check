@@ -117,48 +117,52 @@ def within_reboot_window():
 
 
 def main():
-    auth_header = Gateway.sign_in()
-    if not auth_header:
-        if len(sys.argv) < 2:
-            print("Please add the authentication cookie, or set up `~/.5g-secret`.", file=sys.stderr)
-            print(f"Usage:  {os.path.basename(sys.argv[0])} <authorization cookie>", file=sys.stderr)
-            exit(1)
-        else:
-            auth_header = sys.argv[1]
     exiter = Exiter()
     signal(SIGINT, exiter.on_signal)
     atexit.register(exiter.on_exit)
 
-    try:
-        count_4g = 0
-        while True:
-            started_at = datetime.datetime.now()
-            auth_header, resp = Gateway.get_status(auth_header)
-            modem_type = exiter.record_data_point(resp)
-            if modem_type != '5G' and modem_type != 'N/A' and within_reboot_window():
-                count_4g += 1
-                if count_4g > 5:
-                    print("")
-                    auth_header = run_speed_test(auth_header)
-                    auth_header = Gateway.reboot(auth_header)
-                    exiter.record_reboot()
+    while True:
+        try:
+            auth_header = Gateway.sign_in()
+            if not auth_header:
+                if len(sys.argv) < 2:
+                    print("Please add the authentication cookie, or set up `~/.5g-secret`.", file=sys.stderr)
+                    print(f"Usage:  {os.path.basename(sys.argv[0])} <authorization cookie>", file=sys.stderr)
+                    exit(1)
                 else:
-                    wait_a_while(started_at)
-            else:
-                count_4g = 0
-                try:
-                    if modem_type == '5G' and started_at.hour == Gateway.get_speedtest_hour():
-                        Gateway.advance_speedtest_hour()
+                    auth_header = sys.argv[1]
+            count_4g = 0
+            while True:
+                started_at = datetime.datetime.now()
+                auth_header, resp = Gateway.get_status(auth_header)
+                modem_type = exiter.record_data_point(resp)
+                if modem_type != '5G' and modem_type != 'N/A' and within_reboot_window():
+                    count_4g += 1
+                    if count_4g > 5:
+                        print("")
                         auth_header = run_speed_test(auth_header)
+                        auth_header = Gateway.reboot(auth_header)
+                        exiter.record_reboot()
                     else:
                         wait_a_while(started_at)
-                except HTTPError as error:
-                    print(f"\nFailed to run speed test:  {error.response.reason}")
+                else:
+                    count_4g = 0
+                    try:
+                        if modem_type == '5G' and started_at.hour == Gateway.get_speedtest_hour():
+                            Gateway.advance_speedtest_hour()
+                            auth_header = run_speed_test(auth_header)
+                        else:
+                            wait_a_while(started_at)
+                    except HTTPError as error:
+                        print(f"\nFailed to run speed test:  {error.response.reason}")
 
-    except KeyboardInterrupt:
-        pass
-    except TimeoutError:
-        print("Request timed out, exiting...", file=sys.stderr)
+        except KeyboardInterrupt:
+            break
+        except TimeoutError:
+            print("Request timed out, sleeping for a minute before retrying...", file=sys.stderr)
+        except HTTPError as error:
+            print(f"HTTPError({error.response.reason}), sleeping for a minute before retrying...", file=sys.stderr)
+            time.sleep(60)
 
 
 def run_speed_test(auth_header):
