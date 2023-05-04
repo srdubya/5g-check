@@ -163,6 +163,9 @@ def main():
         except HTTPError as error:
             print(f"HTTPError({error.response.reason}), sleeping for a minute before retrying...", file=sys.stderr)
             time.sleep(60)
+        except KeyError:
+            print(f"Got a wonky return from the 5G Gateway, sleeping for a minute before retrying...", file=sys.stderr)
+            time.sleep(60)
 
 
 def run_speed_test(auth_header):
