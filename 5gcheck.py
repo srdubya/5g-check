@@ -132,6 +132,7 @@ def main():
                 else:
                     auth_header = sys.argv[1]
             count_4g = 0
+            auth_header = run_speed_test(auth_header)
             while True:
                 started_at = datetime.datetime.now()
                 auth_header, resp = Gateway.get_status(auth_header)

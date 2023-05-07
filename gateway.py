@@ -77,37 +77,27 @@ class Gateway:
     @classmethod
     def run_speed_test(cls, auth_token):
         cls.logger.info("Starting speed test...")
+        cls.reset_csrf_token(auth_token)
         if not cls.csrf_token:
-            headers = {
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-                'Accept-Encoding': 'gzip, deflate',
-                'Cookie': auth_token,
-                'Host': '192.168.0.1',
-                'Referer': 'http://192.168.0.1/cgi-bin/luci',
-                'Upgrade-Insecure-Requests': '1',
+            logging.error('CSRF Token not found, unable to run speed test.')
+        else:
+            headers = cls._make_header(auth_token)
+            headers['X-CSRF-TOKEN'] = cls.csrf_token
+            resp = requests.post("http://192.168.0.1/cgi-bin/luci/verizon/speedtest", headers=headers, data="run=run", allow_redirects=True)
+            resp.raise_for_status()
+            new_cookie = resp.headers['Set-Cookie']
+            # cls.csrf_token = resp.headers['X-CSRF-TOKEN']
+            cookie_bits = new_cookie.split(';')
+            auth_token = cookie_bits[0]
+            resp = resp.json()
+            cls.logger.info(f"...response:  download: {resp['download']} Mb/s  upload: {resp['upload']} Mb/s")
+            cls.logger.info(f"               latency: {resp['ping']}  jitter: {resp['jitter']}")
+            return auth_token, {
+                'download': resp['download'],
+                'upload': resp['upload'],
+                'latency': resp['ping'],
+                'jitter': resp['jitter']
             }
-            resp = requests.get("http://192.168.0.1/cgi-bin/luci/", headers=headers)
-            content = resp.content.decode(resp.encoding)
-            match = re.search(r'.*<meta name="csrf-token" content="([0-9a-f]+)"/>.*', content)
-            if match:
-                cls.csrf_token = match.group(1)
-        headers = cls._make_header(auth_token)
-        headers['X-CSRF-TOKEN'] = cls.csrf_token
-        resp = requests.post("http://192.168.0.1/cgi-bin/luci/verizon/speedtest", headers=headers, data="run=run", allow_redirects=True)
-        resp.raise_for_status()
-        new_cookie = resp.headers['Set-Cookie']
-        cls.csrf_token = resp.headers['X-CSRF-TOKEN']
-        cookie_bits = new_cookie.split(';')
-        auth_token = cookie_bits[0]
-        resp = resp.json()
-        cls.logger.info(f"...response:  download: {resp['download']} Mb/s  upload: {resp['upload']} Mb/s")
-        cls.logger.info(f"               latency: {resp['ping']}  jitter: {resp['jitter']}")
-        return auth_token, {
-            'download': resp['download'],
-            'upload': resp['upload'],
-            'latency': resp['ping'],
-            'jitter': resp['jitter']
-        }
 
     @classmethod
     def format_speed_data(cls, speed_data):
@@ -182,3 +172,21 @@ class Gateway:
                 except HTTPError as error:
                     print(f"Error using secret ({error}), trying command line arg...", file=sys.stderr)
         return auth_token
+
+    @classmethod
+    def reset_csrf_token(cls, auth_token):
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Cookie': auth_token,
+            'Host': '192.168.0.1',
+            'Referer': 'http://192.168.0.1/cgi-bin/luci',
+            'X-Request_With': 'XMLHttpRequest',
+            'Upgrade-Insecure-Requests': '1',
+        }
+        resp = requests.get("http://192.168.0.1/cgi-bin/luci/", headers=headers)
+        content = resp.content.decode(resp.encoding)
+        match = re.search(r'.*<meta name="csrf-token" content="([0-9a-f]+)"/>.*', content)
+        if match:
+            cls.csrf_token = match.group(1)
