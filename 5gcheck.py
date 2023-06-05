@@ -160,12 +160,13 @@ def main():
         except KeyboardInterrupt:
             break
         except TimeoutError:
-            print("Request timed out, sleeping for a minute before retrying...", file=sys.stderr)
+            print("\nRequest timed out, sleeping for a minute before retrying...", file=sys.stderr)
+            time.sleep(60)
         except HTTPError as error:
-            print(f"HTTPError({error.response.reason}), sleeping for a minute before retrying...", file=sys.stderr)
+            print(f"\nHTTPError({error.response.reason}), sleeping for a minute before retrying...", file=sys.stderr)
             time.sleep(60)
         except KeyError:
-            print(f"Got a wonky return from the 5G Gateway, sleeping for a minute before retrying...", file=sys.stderr)
+            print(f"\nGot a wonky return from the 5G Gateway, sleeping for a minute before retrying...", file=sys.stderr)
             time.sleep(60)
 
 
