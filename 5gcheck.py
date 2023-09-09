@@ -95,10 +95,10 @@ class Exiter:
 
     @staticmethod
     def print_stats(stats: Dict[str, int], file, indent=""):
-        max_key_length = max([len(x) for x in stats.keys()])
+        max_key_length = max([len(f"{x}") for x in stats.keys()])
         max_value_length = max([len(f"{x:,d}") for x in stats.values()])
         for key in sorted(stats.keys()):
-            print(f"{indent}{key:.<{max_key_length}s}...{stats[key]:.>{max_value_length},d}", file=file)
+            print(f"{indent}{key:.<{max_key_length}}...{stats[key]:.>{max_value_length},d}", file=file)
 
     def record_reboot(self):
         self.reboots += 1
